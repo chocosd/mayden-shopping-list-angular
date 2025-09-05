@@ -1,3 +1,4 @@
+import { provideZonelessChangeDetection } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormControl } from '@angular/forms';
 import { FormElementType } from '../../forms/models/form-element-type.enum';
@@ -10,6 +11,7 @@ describe('ContentEditableComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [ContentEditableComponent],
+      providers: [provideZonelessChangeDetection()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ContentEditableComponent);

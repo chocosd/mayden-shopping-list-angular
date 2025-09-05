@@ -1,3 +1,4 @@
+import { provideZonelessChangeDetection } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ShoppingStore } from '../../store/shopping.store';
 import { ShoppingActionBarComponent } from './shopping-action-bar.component';
@@ -10,6 +11,7 @@ describe('ShoppingActionBarComponent', () => {
     await TestBed.configureTestingModule({
       imports: [ShoppingActionBarComponent],
       providers: [
+        provideZonelessChangeDetection(),
         {
           provide: ShoppingStore,
           useValue: {

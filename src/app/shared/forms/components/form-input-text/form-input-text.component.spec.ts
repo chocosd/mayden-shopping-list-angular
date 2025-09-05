@@ -1,3 +1,4 @@
+import { provideZonelessChangeDetection } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormControl, Validators } from '@angular/forms';
 import { FormElementType } from '../../models/form-element-type.enum';
@@ -8,7 +9,10 @@ describe('FormInputTextComponent', () => {
   let component: FormInputTextComponent;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({ imports: [FormInputTextComponent] }).compileComponents();
+    await TestBed.configureTestingModule({
+      imports: [FormInputTextComponent],
+      providers: [provideZonelessChangeDetection()],
+    }).compileComponents();
     fixture = TestBed.createComponent(FormInputTextComponent);
     component = fixture.componentInstance;
     fixture.componentRef.setInput('element', {

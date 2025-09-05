@@ -1,4 +1,6 @@
+import { provideZonelessChangeDetection } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ShoppingStore } from '../../store/shopping.store';
 import { ShoppingItemComponent } from './shopping-item.component';
 
 describe('ShoppingItemComponent', () => {
@@ -6,7 +8,18 @@ describe('ShoppingItemComponent', () => {
   let component: ShoppingItemComponent;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({ imports: [ShoppingItemComponent] }).compileComponents();
+    await TestBed.configureTestingModule({
+      imports: [ShoppingItemComponent],
+      providers: [
+        provideZonelessChangeDetection(),
+        {
+          provide: ShoppingStore,
+          useValue: {
+            updateShoppingItem: jasmine.createSpy('updateShoppingItem'),
+          },
+        },
+      ],
+    }).compileComponents();
     fixture = TestBed.createComponent(ShoppingItemComponent);
     component = fixture.componentInstance;
     fixture.componentRef.setInput('item', {

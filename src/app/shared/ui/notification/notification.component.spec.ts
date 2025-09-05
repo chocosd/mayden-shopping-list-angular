@@ -1,3 +1,4 @@
+import { provideZonelessChangeDetection } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NotificationComponent } from './notification.component';
 
@@ -8,10 +9,15 @@ describe('NotificationComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [NotificationComponent],
+      providers: [provideZonelessChangeDetection()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(NotificationComponent);
     component = fixture.componentInstance;
+
+    fixture.componentRef.setInput('variant', 'info');
+    fixture.componentRef.setInput('message', 'Hello world');
+    fixture.componentRef.setInput('modifierClass', []);
     fixture.detectChanges();
   });
 
@@ -21,6 +27,8 @@ describe('NotificationComponent', () => {
 
   it('should default variant to "info"', () => {
     expect(component.variant()).toBe('info');
+    expect(component.message()).toBe('Hello world');
+    expect(component.modifierClass()).toEqual([]);
   });
 
   it('should accept a message input', () => {

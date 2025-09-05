@@ -1,3 +1,4 @@
+import { provideZonelessChangeDetection } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ShoppingStore } from '../../store/shopping.store';
 import { ShoppingItemCenterComponent } from './shopping-item-center.component';
@@ -10,6 +11,7 @@ describe('ShoppingItemCenterComponent', () => {
     await TestBed.configureTestingModule({
       imports: [ShoppingItemCenterComponent],
       providers: [
+        provideZonelessChangeDetection(),
         {
           provide: ShoppingStore,
           useValue: { updateShoppingItem: jasmine.createSpy('updateShoppingItem') },

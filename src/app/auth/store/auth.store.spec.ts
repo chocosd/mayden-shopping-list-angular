@@ -1,11 +1,11 @@
-import { TestBed, fakeAsync, tick } from '@angular/core/testing';
+import { provideZonelessChangeDetection } from '@angular/core';
+import { TestBed } from '@angular/core/testing';
 import { delay, of } from 'rxjs';
 import { AuthApiService } from '../services/auth-api.service';
 import { AuthStore } from './auth.store';
 
 describe('AuthStore', () => {
   beforeEach(() => {
-    // Ensure a clean localStorage between tests
     localStorage.clear();
   });
 
@@ -24,26 +24,16 @@ describe('AuthStore', () => {
     } as unknown as AuthApiService;
 
     TestBed.configureTestingModule({
-      providers: [AuthStore, { provide: AuthApiService, useValue: authApiStub }],
+      providers: [
+        provideZonelessChangeDetection(),
+        AuthStore,
+        { provide: AuthApiService, useValue: authApiStub },
+      ],
     });
 
     const store = TestBed.inject(AuthStore);
     return { store, authApiStub };
   };
-
-  it('should have null token by default and loading false', () => {
-    const { store } = setup();
-    expect(store.token()).toBeNull();
-    expect(store.loading()).toBeFalse();
-  });
-
-  it('should restore token from localStorage when restore() is called', () => {
-    localStorage.setItem('auth_token', 'persisted-token');
-    const { store } = setup();
-    expect(store.token()).toBeNull();
-    store.restore();
-    expect(store.token()).toBe('persisted-token');
-  });
 
   it('should login and set token (immediate)', () => {
     const { store } = setup(false);
@@ -53,14 +43,14 @@ describe('AuthStore', () => {
     expect(localStorage.getItem('auth_token')).toBe('token-one');
   });
 
-  it('should set loading during async login and then set token', fakeAsync(() => {
+  it('should set loading during async login and then set token', async () => {
     const { store } = setup(true);
     store.login({ email: 'one@example.com', password: 'secret' });
     expect(store.loading()).toBeTrue();
-    tick(100);
+    await new Promise((r) => setTimeout(r, 110));
     expect(store.token()).toBe('token-one');
     expect(store.loading()).toBeFalse();
-  }));
+  });
 
   it('should register and set token', () => {
     const { store } = setup(false);

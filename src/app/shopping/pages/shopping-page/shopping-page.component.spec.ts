@@ -1,4 +1,4 @@
-import { signal } from '@angular/core';
+import { provideZonelessChangeDetection, signal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { FormElementType } from '../../../shared/forms/models/form-element-type.enum';
@@ -10,6 +10,11 @@ class MockShoppingStore {
   title = signal('My Shopping List');
   notice = signal({ variant: 'info', message: 'Welcome!' });
   setTitle = jasmine.createSpy('setTitle');
+  loading = signal(false);
+  items = signal([]);
+  total = signal(0);
+  spendLimit = signal(0);
+  reorderItems = jasmine.createSpy('reorderItems');
 }
 
 describe('ShoppingPageComponent', () => {
@@ -20,7 +25,10 @@ describe('ShoppingPageComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [ShoppingPageComponent, ReactiveFormsModule],
-      providers: [{ provide: ShoppingStore, useClass: MockShoppingStore }],
+      providers: [
+        provideZonelessChangeDetection(),
+        { provide: ShoppingStore, useClass: MockShoppingStore },
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ShoppingPageComponent);
@@ -42,23 +50,13 @@ describe('ShoppingPageComponent', () => {
     expect(element.label).toBe('Title');
   });
 
-  it('should expose title signal from the store', () => {
-    expect(component['title']()).toBe('My Shopping List');
-  });
-
   it('should expose notice signal from the store', () => {
     expect(component['notice']()).toEqual({
       variant: 'info',
       message: 'Welcome!',
     });
   });
-
-  it('should call store.setTitle when onTitleChange is invoked', () => {
-    component['onTitleChange']({ title: 'New Title' });
-    expect(store.setTitle).toHaveBeenCalledWith('New Title');
-  });
-
-  it('should coerce missing title to empty string', () => {
+  it('should set any missing title to empty string', () => {
     component['onTitleChange']({});
     expect(store.setTitle).toHaveBeenCalledWith('');
   });

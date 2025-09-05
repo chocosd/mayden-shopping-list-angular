@@ -1,3 +1,4 @@
+import { provideZonelessChangeDetection } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormControl } from '@angular/forms';
 import { FormElementType } from '../../models/form-element-type.enum';
@@ -10,6 +11,7 @@ describe('FormInputCheckboxComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [FormInputCheckboxComponent],
+      providers: [provideZonelessChangeDetection()],
     }).compileComponents();
     fixture = TestBed.createComponent(FormInputCheckboxComponent);
     component = fixture.componentInstance;

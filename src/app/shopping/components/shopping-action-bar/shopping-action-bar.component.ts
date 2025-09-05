@@ -62,6 +62,7 @@ export class ShoppingActionBarComponent {
         control: this.form.get('quantity') as FormControl<number>,
         config: {
           decimals: false,
+          step: 1,
         },
         validators: [
           { name: 'required', message: 'Quantity is required' },
@@ -75,6 +76,7 @@ export class ShoppingActionBarComponent {
         control: this.form.get('price') as FormControl<number>,
         config: {
           decimals: true,
+          step: 0.01,
         },
         validators: [
           { name: 'required', message: 'Price is required' },

@@ -32,13 +32,13 @@ export class ShoppingTotalComponent {
 
   constructor() {
     effect(() => {
-      const value = this.spendLimit();
+      const value = this.spendLimit?.();
       this.spendLimitElement.control.setValue(value, { emitEvent: false });
     });
   }
 
   protected onSpendLimitChange = (payload: Record<string, unknown>): void => {
-    const value = Number(payload['spendLimit'] ?? this.spendLimit());
+    const value = Number(payload['spendLimit'] ?? this.spendLimit?.());
     if (!Number.isFinite(value)) {
       return;
     }

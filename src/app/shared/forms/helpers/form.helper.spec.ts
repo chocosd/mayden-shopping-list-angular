@@ -1,7 +1,11 @@
+import { provideZonelessChangeDetection } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { validateForm } from './form.helper';
 
 describe('validateForm', () => {
+  beforeEach(() => {
+    provideZonelessChangeDetection();
+  });
   it('should return false and mark controls when invalid', () => {
     const group = new FormGroup({
       name: new FormControl('', { nonNullable: true, validators: [Validators.required] }),

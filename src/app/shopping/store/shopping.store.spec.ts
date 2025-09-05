@@ -1,9 +1,10 @@
-import { TestBed, fakeAsync, tick } from '@angular/core/testing';
+import { provideZonelessChangeDetection } from '@angular/core';
+import { TestBed } from '@angular/core/testing';
 import { delay, of } from 'rxjs';
 import { ShoppingApiService } from '../services/shopping-api.service';
 import { ShoppingStore } from './shopping.store';
 
-describe('ShoppingStore (cart updates)', () => {
+describe('ShoppingStore', () => {
   const setup = (delayed = false) => {
     const apiStub: Partial<ShoppingApiService> = {
       updateCart: jasmine.createSpy('updateCart').and.callFake((payload: any) => {
@@ -21,14 +22,18 @@ describe('ShoppingStore (cart updates)', () => {
     } as unknown as ShoppingApiService;
 
     TestBed.configureTestingModule({
-      providers: [ShoppingStore, { provide: ShoppingApiService, useValue: apiStub }],
+      providers: [
+        provideZonelessChangeDetection(),
+        ShoppingStore,
+        { provide: ShoppingApiService, useValue: apiStub },
+      ],
     });
 
     const store = TestBed.inject(ShoppingStore);
     return { store, apiStub };
   };
 
-  it('should call updateCart when setting title (immediate)', () => {
+  it('should call updateCart when setting title', () => {
     const { store, apiStub } = setup(false);
     store.setTitle('Groceries');
     expect((apiStub.updateCart as jasmine.Spy).calls.mostRecent().args[0]).toEqual({
@@ -37,7 +42,7 @@ describe('ShoppingStore (cart updates)', () => {
     expect(store.title()).toBe('Groceries');
   });
 
-  it('should call updateCart when setting spendLimit (immediate)', () => {
+  it('should call updateCart when setting spendLimit', () => {
     const { store, apiStub } = setup(false);
     store.setSpendLimit(200);
     expect((apiStub.updateCart as jasmine.Spy).calls.mostRecent().args[0]).toEqual({
@@ -46,12 +51,11 @@ describe('ShoppingStore (cart updates)', () => {
     expect(store.spendLimit()).toBe(200);
   });
 
-  it('should handle delayed update of spendLimit', fakeAsync(() => {
+  it('should handle delayed update of spendLimit', async () => {
     const { store } = setup(true);
     store.setSpendLimit(300);
-    // optimistic state applied immediately
     expect(store.spendLimit()).toBe(300);
-    tick(100);
+    await new Promise((r) => setTimeout(r, 110));
     expect(store.spendLimit()).toBe(300);
-  }));
+  });
 });

@@ -1,3 +1,4 @@
+import { provideZonelessChangeDetection } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ShoppingStore } from '../../store/shopping.store';
 import { ShoppingTotalComponent } from './shopping-total.component';
@@ -10,6 +11,7 @@ describe('ShoppingTotalComponent', () => {
     await TestBed.configureTestingModule({
       imports: [ShoppingTotalComponent],
       providers: [
+        provideZonelessChangeDetection(),
         {
           provide: ShoppingStore,
           useValue: {
