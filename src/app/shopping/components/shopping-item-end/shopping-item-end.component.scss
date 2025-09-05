@@ -1,0 +1,10 @@
+:host {
+  display: contents;
+}
+
+.shopping-card-item__end {
+  display: flex;
+  gap: var(--gap);
+  align-items: center;
+  justify-content: center;
+}

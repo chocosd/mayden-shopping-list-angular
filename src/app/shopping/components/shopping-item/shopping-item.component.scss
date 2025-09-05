@@ -1,0 +1,23 @@
+:host {
+  width: 100%;
+  display: flex;
+  flex: 1 0 auto;
+}
+
+.shopping-card-item {
+  &__container {
+    display: flex;
+    background: var(--card-background);
+    width: 100%;
+    flex: 1 0 auto;
+    gap: var(--gap-lg);
+    padding: var(--padding-lg) var(--padding-md);
+    border-radius: var(--padding-sm);
+    border: var(--card-border-width) var(--card-border-style) var(--card-border-color);
+  }
+
+  &__start {
+    display: flex;
+    gap: var(--gap);
+  }
+}

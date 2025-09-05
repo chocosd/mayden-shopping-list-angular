@@ -1,0 +1,31 @@
+<span
+  class="content-editable"
+  (mouseenter)="isHovering.set(true)"
+  (mouseleave)="isHovering.set(false)"
+  (clickOutside)="stopEditing()"
+  [attr.disabled]="disabled()"
+>
+  @if (!isEditing() && !disabled()) {
+    <lucide-icon
+      class="content-editable__edit"
+      [img]="Edit2Icon"
+      [size]="'12px'"
+      [style.opacity]="isHovering() ? '1' : '0.5'"
+      (click)="startEditing()"
+    />
+    <span class="content-editable__value">
+      {{ value() }}
+    </span>
+  } @else if (disabled()) {
+    <span class="content-editable__value" [attr.disabled]="disabled()">
+      {{ value() }}
+    </span>
+  } @else {
+    @if (element() && !disabled()) {
+      <app-form-element [element]="element()" />
+      <app-button [variant]="'primary'" [size]="'sm'" (click)="commit()">
+        <lucide-icon [img]="CheckIcon" [size]="'12px'" />
+      </app-button>
+    }
+  }
+</span>

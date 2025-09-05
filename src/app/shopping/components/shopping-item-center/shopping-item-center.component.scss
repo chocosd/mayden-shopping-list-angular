@@ -1,0 +1,34 @@
+:host {
+  display: contents;
+}
+
+.shopping-card-item {
+  &__center {
+    flex: 1 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--gap);
+  }
+
+  &__name {
+    font-size: 1.2rem;
+    flex: 1 0 auto;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  &__price {
+    font-size: 1rem;
+    flex: 0 0 auto;
+    font-weight: 400;
+    color: var(--text-subtitle);
+  }
+
+  &__quantity {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-inline-end: var(--gap-sm);
+  }
+}

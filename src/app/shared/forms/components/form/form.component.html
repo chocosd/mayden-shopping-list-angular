@@ -1,0 +1,6 @@
+<form class="app-form" [formGroup]="formGroup()" (ngSubmit)="onSubmit()">
+  @for (element of form(); track element.name) {
+    <app-form-element [element]="element" />
+  }
+  <app-button variant="primary" size="md" type="submit">{{ submitLabel() }}</app-button>
+</form>

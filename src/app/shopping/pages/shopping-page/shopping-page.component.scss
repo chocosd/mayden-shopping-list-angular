@@ -1,0 +1,55 @@
+:host {
+  display: grid;
+  grid-template-rows:
+    auto /* action bar */
+    auto /* title */
+    minmax(0, 1fr) /* list scroll area */
+    auto /* notice */
+    auto /* total */;
+  gap: var(--gap-lg);
+  align-items: start;
+  justify-items: center;
+  padding: var(--padding-md);
+  height: 100%;
+  width: 100%;
+}
+
+.page__title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-align: start;
+  width: 100%;
+  flex: 1 0 auto;
+}
+
+.page__action-bar,
+.page__title,
+.page__notice,
+.page__total {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.page__list {
+  width: 100%;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  overflow: auto;
+  padding: 0 1rem 0 0;
+}
+
+.page__list > app-shopping-list {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+.page__notice .page__notice--empty {
+  width: 100%;
+  max-width: var(--container-max-width);
+  height: 0;
+}

@@ -1,0 +1,8 @@
+<section class="shopping-card-item__start">
+  @if (boughtElement) {
+    <app-form-input-checkbox [element]="boughtElement" />
+  }
+  <button class="drag-handle" aria-label="Reorder item">
+    <lucide-icon [img]="GripVerticalIcon" [size]="16" />
+  </button>
+</section>

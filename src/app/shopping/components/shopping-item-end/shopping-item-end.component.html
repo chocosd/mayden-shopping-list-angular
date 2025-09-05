@@ -1,0 +1,28 @@
+<section class="shopping-card-item__end">
+  <app-button
+    [variant]="'dark'"
+    [modifierClass]="'rounded'"
+    [size]="'sm'"
+    [disabled]="item().quantity === 1 || item().bought"
+    (onClick)="removeOneFromShoppingItemQuantity(item().id)"
+  >
+    <lucide-icon [size]="'10px'" [img]="MinusIcon" />
+  </app-button>
+  <app-button
+    [variant]="'dark'"
+    [modifierClass]="'rounded'"
+    [size]="'sm'"
+    [disabled]="item().bought"
+    (onClick)="addOneToShoppingItemQuantity(item().id)"
+  >
+    <lucide-icon [size]="'10px'" [img]="PlusIcon" />
+  </app-button>
+  <app-button
+    [variant]="'danger'"
+    [modifierClass]="'inverse'"
+    [size]="'sm'"
+    (onClick)="removeShoppingItem(item().id)"
+  >
+    <lucide-icon [size]="'10px'" [img]="TrashIcon" />
+  </app-button>
+</section>

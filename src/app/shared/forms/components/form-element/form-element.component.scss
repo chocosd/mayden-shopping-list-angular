@@ -1,0 +1,15 @@
+.form-field {
+  flex: 1 1 180px;
+  min-width: 0;
+}
+
+.form-errors {
+  margin-top: 4px;
+  margin-bottom: 0;
+  padding-left: 16px;
+}
+
+.form-error {
+  color: var(--danger-color);
+  font-size: 12px;
+}

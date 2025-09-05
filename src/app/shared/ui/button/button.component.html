@@ -1,0 +1,11 @@
+<button
+  class="button"
+  [ngStyle]="styles()"
+  tabindex="0"
+  [ngClass]="classes()"
+  [disabled]="disabled()"
+  [type]="type()"
+  (click)="onClick.emit($event)"
+>
+  <ng-content />
+</button>

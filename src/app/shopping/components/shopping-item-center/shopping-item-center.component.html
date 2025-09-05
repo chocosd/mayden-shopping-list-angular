@@ -1,0 +1,31 @@
+<section class="shopping-card-item__center">
+  <section>
+    <div class="shopping-card-item__name">
+      @if (nameElement) {
+        <app-content-editable
+          [disabled]="item().bought"
+          [element]="nameElement"
+          [value]="item().name"
+          (onContentEditableChange)="updateItemField('name', $event)"
+        />
+      } @else {
+        {{ item().name }}
+      }
+    </div>
+    <div class="shopping-card-item__price">
+      @if (priceElement) {
+        <app-content-editable
+          [disabled]="item().bought"
+          [element]="priceElement"
+          [value]="item().price"
+          (onContentEditableChange)="updateItemField('price', $event)"
+        />
+      } @else {
+        {{ item().price }}
+      }
+    </div>
+  </section>
+  <div class="shopping-card-item__quantity">
+    {{ item().quantity }}
+  </div>
+</section>

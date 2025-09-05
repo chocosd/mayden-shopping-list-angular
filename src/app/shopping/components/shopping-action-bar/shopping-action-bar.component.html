@@ -1,0 +1,9 @@
+@if (form) {
+  <section
+    class="shopping-action-bar"
+    [formGroup]="form"
+    [form]="formElements"
+    submitLabel="Add"
+    (submitted)="onSubmit()"
+  ></section>
+}

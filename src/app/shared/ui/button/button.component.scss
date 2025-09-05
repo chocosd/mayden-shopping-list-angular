@@ -1,0 +1,84 @@
+@use 'sass:map';
+
+// if there was more time i would create a theme/maps scss folder for this to go into
+$colors: 'primary', 'accent', 'danger', 'info', 'warning', 'success', 'light', 'dark';
+$sizes: 'sm', 'md', 'lg';
+
+// if there was more time i would create a partials scss folder for this to go into
+%button-base {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--padding-sm) var(--padding-lg);
+  border-radius: 4px;
+  outline: none;
+  border: none;
+  background: var(--light-color);
+  height: 36px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  &:hover {
+    background: var(--light-color);
+    color: var(--text-dark);
+    transform: scale(1.05);
+  }
+  &:focus-visible {
+    outline: 2px solid color-mix(in srgb, var(--text-dark) 10%, var(--primary-color));
+    outline-offset: 2px;
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--text-light) 80%, var(--primary-color));
+  }
+}
+
+.button {
+  $this: &;
+  @extend %button-base;
+
+  &[disabled] {
+    cursor: not-allowed;
+    pointer-events: none;
+    opacity: 0.5;
+  }
+
+  &--rounded {
+    border-radius: 60px;
+    aspect-ratio: 1/1;
+  }
+
+  &--clear {
+    background: transparent;
+    color: var(--text-dark);
+  }
+
+  @each $color, $value in $colors {
+    &--#{$color} {
+      background: var(--#{$color}-color);
+      color: var(--text-light);
+
+      &#{$this}--inverse {
+        background: var(--text-light);
+        color: var(--#{$color}-color);
+
+        &:hover {
+          background: color-mix(in srgb, var(--text-light) 80%, var(--#{$color}-color));
+        }
+      }
+    }
+  }
+
+  @each $size in $sizes {
+    &--#{$size} {
+      padding: var(--padding-#{$size});
+    }
+
+    @if $size == 'sm' {
+      height: 24px;
+    }
+  }
+
+  &[type='submit'] {
+    height: 36px;
+    flex: 1 0 auto;
+  }
+}

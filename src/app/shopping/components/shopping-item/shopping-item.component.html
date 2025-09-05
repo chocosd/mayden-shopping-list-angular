@@ -1,0 +1,10 @@
+<section
+  class="shopping-card-item__container"
+  draggable="true"
+  (dragstart)="onDragStart($event, item())"
+  (dragend)="onDragEnd($event, item())"
+>
+  <app-shopping-item-start [item]="item()" />
+  <app-shopping-item-center [item]="item()" />
+  <app-shopping-item-end [item]="item()" />
+</section>

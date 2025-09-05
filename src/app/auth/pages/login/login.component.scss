@@ -1,0 +1,57 @@
+.login {
+  &__container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: var(--gap-lg);
+    justify-content: center;
+    padding: var(--padding-xl) var(--padding-md);
+  }
+
+  &__title {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  &__form-error {
+    color: var(--danger-color);
+    font-size: 12px;
+  }
+
+  &__form {
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-lg);
+    background: var(--card-background);
+    border: var(--card-border-width) var(--card-border-style) var(--card-border-color);
+    border-radius: 8px;
+    padding: var(--padding-xl);
+  }
+
+  &__field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-sm);
+  }
+
+  &__field input {
+    padding: 10px 16px;
+    border-radius: 4px;
+    border: none;
+    background: #f1f6f7;
+  }
+
+  &__hint {
+    margin-top: var(--gap);
+    color: var(--text-secondary);
+  }
+
+  &__actions {
+    display: flex;
+    gap: var(--gap);
+  }
+}

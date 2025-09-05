@@ -1,0 +1,21 @@
+.form-field {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.form-input[type='checkbox'] {
+  width: 20px;
+  height: 20px;
+  accent-color: var(--primary-color);
+}
+
+.form-input[type='checkbox']:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--text-dark) 10%, var(--primary-color));
+  outline-offset: 2px;
+}
+
+.form-error {
+  color: var(--danger-color);
+  font-size: 12px;
+}

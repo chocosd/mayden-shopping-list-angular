@@ -1,0 +1,38 @@
+<section class="login__container">
+  <h1 class="login__title">{{ title() }}</h1>
+
+  <form class="login__form" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <label class="login__field">
+      <span>Email</span>
+      <input type="email" formControlName="email" [required]="true" />
+      @if (emailError) {
+        <span class="login__form-error">{{ emailError }}</span>
+      }
+    </label>
+    <label class="login__field">
+      <span>Password</span>
+      <input type="password" formControlName="password" [required]="true" />
+      @if (passwordError) {
+        <span class="login__form-error">{{ passwordError }}</span>
+      }
+    </label>
+
+    <app-button type="button" [variant]="'clear'" (click)="toggleFormType()">{{
+      submitLabel()
+    }}</app-button>
+
+    @if (notice().message) {
+      <app-notification
+        class="page__notice"
+        [variant]="notice().variant"
+        [message]="notice().message"
+      />
+    } @else {
+      <div class="page__notice--empty" aria-hidden="true"></div>
+    }
+
+    <div class="login__actions">
+      <app-button type="submit" [variant]="'primary'">{{ title() }}</app-button>
+    </div>
+  </form>
+</section>

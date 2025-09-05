@@ -1,0 +1,59 @@
+/* You can add global styles to this file, and also import other style files */
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+:root {
+  --padding-md: 16px;
+  --padding-sm: 8px;
+  --padding-lg: 16px;
+  --padding-xl: 32px;
+
+  --background: #edf0f4;
+  --card-background: #fff;
+
+  --card-border-width: 1px;
+  --card-border-style: solid;
+  --card-border-color: #e4e9f2;
+
+  --gap: 8px;
+  --gap-sm: 4px;
+  --gap-lg: 16px;
+  --gap-xl: 32px;
+
+  --text-primary: rgb(34, 43, 69);
+  --text-secondary: rgb(107, 114, 128);
+  --text-tertiary: rgb(156, 163, 175);
+  --text-subtitle: rgb(107, 114, 128);
+  --text-accent: rgb(59, 130, 246);
+  --text-danger: rgb(239, 68, 68);
+  --text-warning: rgb(234, 179, 8);
+  --text-success: rgb(22, 163, 74);
+  --text-light: rgb(255, 255, 255);
+  --text-dark: rgb(0, 0, 0);
+
+  --primary-color: #00aeff;
+  --accent-color: #666872;
+  --danger-color: #f44336;
+  --info-color: #2196f3;
+  --warning-color: #ffc107;
+  --success-color: #4caf50;
+  --light-color: #f1f6f7;
+  --dark-color: #212121;
+
+  /* Layout */
+  --container-max-width: 900px;
+}

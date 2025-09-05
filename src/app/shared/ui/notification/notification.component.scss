@@ -1,0 +1,47 @@
+.notification {
+  width: 100%;
+  max-width: 900px;
+  padding: var(--padding-sm) var(--padding-md);
+  border-radius: 6px;
+  border: 1px solid transparent;
+  background: var(--light-color);
+  color: var(--text-primary);
+}
+
+.notification__message {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.notification--primary {
+  background: color-mix(in srgb, var(--primary-color) 10%, white);
+  border-color: var(--primary-color);
+}
+.notification--accent {
+  background: color-mix(in srgb, var(--accent-color) 10%, white);
+  border-color: var(--accent-color);
+}
+.notification--danger {
+  background: color-mix(in srgb, var(--danger-color) 10%, white);
+  border-color: var(--danger-color);
+}
+.notification--info {
+  background: color-mix(in srgb, var(--info-color) 10%, white);
+  border-color: var(--info-color);
+}
+.notification--warning {
+  background: color-mix(in srgb, var(--warning-color) 10%, white);
+  border-color: var(--warning-color);
+}
+.notification--success {
+  background: color-mix(in srgb, var(--success-color) 10%, white);
+  border-color: var(--success-color);
+}
+.notification--light {
+  background: color-mix(in srgb, var(--light-color) 10%, white);
+  border-color: var(--light-color);
+}
+.notification--dark {
+  background: color-mix(in srgb, var(--dark-color) 10%, white);
+  border-color: var(--dark-color);
+}

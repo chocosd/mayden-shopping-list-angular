@@ -1,0 +1,8 @@
+@if (element()) {
+  <label class="form-field">
+    @if (element().label) {
+      <span class="form-label">{{ element().label }}</span>
+    }
+    <input type="text" class="form-input" [formControl]="element().control" tabindex="0" />
+  </label>
+}

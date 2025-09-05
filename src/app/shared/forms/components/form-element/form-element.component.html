@@ -1,0 +1,22 @@
+@if (element()) {
+  @switch (element()?.type) {
+    @case (FormElementType.Text) {
+      <app-form-input-text [element]="element()" />
+    }
+    @case (FormElementType.Number) {
+      <app-form-input-number [element]="element()" />
+    }
+    @case (FormElementType.Checkbox) {
+      <app-form-input-checkbox [element]="element()" />
+    }
+  }
+  @if (hasErrors()) {
+    <ul class="form-errors">
+      @for (rule of element()?.validators; track rule.name) {
+        @if (element()?.control?.errors?.[rule.name]) {
+          <li class="form-error">{{ rule.message }}</li>
+        }
+      }
+    </ul>
+  }
+}

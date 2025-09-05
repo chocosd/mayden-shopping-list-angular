@@ -1,0 +1,22 @@
+<app-shopping-action-bar class="page__action-bar" />
+
+<app-content-editable
+  class="page__title"
+  [value]="title() || 'Untitled list'"
+  [element]="titleElement"
+  (onContentEditableChange)="onTitleChange($event)"
+/>
+
+<app-shopping-list class="page__list" />
+
+@if (notice().message) {
+  <app-notification
+    class="page__notice"
+    [variant]="notice().variant"
+    [message]="notice().message"
+  />
+} @else {
+  <div class="page__notice--empty" aria-hidden="true"></div>
+}
+
+<app-shopping-total class="page__total" />

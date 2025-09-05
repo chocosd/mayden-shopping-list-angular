@@ -1,0 +1,11 @@
+@if (isLoading()) {
+  <p>Loading...</p>
+} @else {
+  <ul class="shopping-list__container" (dragover)="$event.preventDefault()" (drop)="onDrop($event)">
+    @for (item of shoppingItems(); track item.id) {
+      <li class="shopping-list__row" [attr.data-id]="item.id" (dragover)="onDragOver($event)">
+        <app-shopping-item [item]="item" />
+      </li>
+    }
+  </ul>
+}

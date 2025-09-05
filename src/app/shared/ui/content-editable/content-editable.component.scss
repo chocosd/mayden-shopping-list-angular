@@ -1,0 +1,19 @@
+.content-editable {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-sm);
+
+  &__edit {
+    cursor: pointer;
+    color: var(--primary-color);
+  }
+
+  &__value {
+    &[disabled] {
+      cursor: not-allowed;
+      pointer-events: none;
+      opacity: 0.5;
+      text-decoration: line-through;
+    }
+  }
+}

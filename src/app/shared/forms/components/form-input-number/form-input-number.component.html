@@ -1,0 +1,16 @@
+<label class="form-field" [for]="element().name">
+  @if (element().label) {
+    <span class="form-label">
+      {{ element().label }}
+    </span>
+  }
+  <input
+    class="form-input"
+    type="number"
+    tabindex="0"
+    [formControl]="element().control"
+    [id]="element().name"
+    [name]="element().name"
+    [step]="element().config?.step ?? (element().config?.decimals ? 0.01 : 1)"
+  />
+</label>

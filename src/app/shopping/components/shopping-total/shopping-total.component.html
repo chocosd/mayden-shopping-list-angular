@@ -1,0 +1,18 @@
+<div class="shopping-total__container">
+  <div class="shopping-total__total">
+    <span class="shopping-total__label">Total</span>
+    <span class="shopping-total__value">{{ total() | number: '1.2-2' }}</span>
+  </div>
+  <div class="shopping-total__spend-limit">
+    <span class="shopping-total__label">Spend Limit</span>
+    <app-content-editable
+      [value]="spendLimit()"
+      [element]="spendLimitElement"
+      (onContentEditableChange)="onSpendLimitChange($event)"
+    />
+  </div>
+  <div class="shopping-total__remaining" [class.negative]="remaining() < 0">
+    <span class="shopping-total__label">Remaining</span>
+    <span class="shopping-total__value">{{ remaining() | number: '1.2-2' }}</span>
+  </div>
+</div>

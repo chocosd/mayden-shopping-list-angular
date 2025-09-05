@@ -1,0 +1,13 @@
+<label class="form-field form-field--checkbox" for="element().name">
+  <input
+    type="checkbox"
+    class="form-input"
+    [id]="element().name"
+    [formControl]="element().control"
+    tabindex="0"
+  />
+
+  @if (element().label) {
+    <span class="form-label">{{ element().label }}</span>
+  }
+</label>
